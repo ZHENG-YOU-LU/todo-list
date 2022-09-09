@@ -1,28 +1,13 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const mongoose = require('mongoose') // 載入 mongoose
-const Todo = require('./models/todo') // 載入 Todo model
 const bodyParser = require('body-parser') // 引用 body-parser
 const methodOverride = require('method-override') // 載入 method-override
-const app = express() 
-const routes = require('./routes') // 引用路由器
 
-// set MONGODB_URI
+const routes = require('./routes') // 引用路由器
+require('./config/mongoose') //引用資料庫
 console.log(process.env.MONGODB_URI)
 
-const uri = process.env.MONGODB_URI
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
-
-// 取得資料庫連線狀態
-const db = mongoose.connection
-// 連線異常
-db.on('error', () => {
-	console.log('mongodb error!')
-})
-// 連線成功
-db.once('open', () => {
-	console.log('mongodb connected!')
-})
+const app = express() 
 
 app.engine('hbs', exphbs({ defaultLayout: 'main' , extname:'.hbs'}))
 app.set('view engine', 'hbs')
