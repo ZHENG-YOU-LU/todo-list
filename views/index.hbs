@@ -1,4 +1,4 @@
-<ul>
+<ul class="list-group">
 	{{#each todos}}
 	<li class="list-group-item">
 		<div class="row">
@@ -9,10 +9,10 @@
 				</h4>
 			</div>
 			<div class="col-auto">
-				<a href="./todos/{{ this._id }}">detail</a>
-				<a href="./todos/{{ this._id }}/edit">edit</a>
+				<a class="btn btn-secondary" href="./todos/{{ this._id }}">detail</a>
+				<a class="btn btn-success" href="./todos/{{ this._id }}/edit">edit</a>
 				<form action="./todos/{{ this._id}}?_method=DELETE" method="POST" style="display: inline">
-				<button type="submit">delete</button>
+				<button class="btn btn-danger" type="submit">delete</button>
 				</form>
 			</div>
 		</div>
