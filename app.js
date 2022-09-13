@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser') // 引用 body-parser
 const methodOverride = require('method-override') // 載入 method-override
+const PORT = process.env.PORT || 3000
 
 const routes = require('./routes') // 引用路由器
 require('./config/mongoose') //引用資料庫
@@ -77,7 +78,7 @@ app.use(routes)
 // 		.catch(error => console.log)
 // })
 
-app.listen(3000, () => {
-	console.log(`Express is running on http://localhost:3000`)
+app.listen(PORT, () => {
+	console.log(`Express is running on http://localhost:${PORT}`)
 })
 
