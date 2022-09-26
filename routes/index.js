@@ -13,5 +13,8 @@ const todos = require('./modules/todos')
 // 將網址結構符合 /todos 字串開頭的 request 導向 todos 模組 
 router.use('/todos', todos)
 
+const users = require('./modules/users')
+router.use('/users', users)
+
 // 匯出路由器
 module.exports = router

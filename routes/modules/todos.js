@@ -40,7 +40,7 @@ router.put('/:id', (req, res) => {
 			todo.isDone = isDone === "on"
 			return todo.save()
 		})
-		.then(() => res.redirect(`/todos/${id}`)) //如果儲存成功，導向首頁
+		.then(() => res.redirect(`/todos/${id}`)) //如果儲存成功，導向該筆資料葉面
 		.catch(error => console.log(error))
 })
 
