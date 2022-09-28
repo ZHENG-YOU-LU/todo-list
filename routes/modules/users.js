@@ -3,10 +3,17 @@ const express = require('express')
 const router = express.Router()
 // 引入 User model
 const User = require('../../models/user')
+// 引用 passport
+const passport = require('passport')
 
 router.get('/login', (req, res) => {
 	res.render('login')
 })
+
+router.post('/login', passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/users/login'
+}))
 
 router.get('/register' ,(req ,res) => {
 	res.render('register')
