@@ -3,6 +3,7 @@ const session = require('express-session') //引用 express-session
 const exphbs = require('express-handlebars') //樣板引擎
 const bodyParser = require('body-parser') // 引用 body-parser
 const methodOverride = require('method-override') // 載入 method-override
+const flash = require('connect-flash') // flash message
 const PORT = process.env.PORT || 3000
 
 const routes = require('./routes') // 引用路由器
@@ -31,10 +32,14 @@ app.use(methodOverride("_method"))
 // 呼叫 Passport 函式並傳入 app，這條要寫在路由之前
 usePassport(app)
 
+app.use(flash())
+
 // 
 app.use((req, res, next) => {
 	res.locals.isAuthenticated = req.isAuthenticated()
 	res.locals.user = req.user
+	res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
+	res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
 	next()
 })
 
